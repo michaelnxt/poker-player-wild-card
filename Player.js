@@ -38,7 +38,7 @@ class Player {
     let playersInGame = 0;
 
     for(let p = 0; p < gameState["players"].length; p++){
-      if(gameState["players"][0]["status"] === "active"){
+      if(gameState["players"][p]["status"] === "active"){
         playersInGame++;
       }
     }
