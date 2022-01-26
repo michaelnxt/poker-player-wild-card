@@ -6,11 +6,13 @@ class Player {
   static betRequest(gameState, bet) {
     const currentBuyIn = gameState["current_buy_in"];
     const minimumRaiseAmount = gameState["minimum_raise"];
-    const moreRiskRaiseAmount = minimumRaiseAmount * 2;
+    const moreRiskRaiseAmount = minimumRaiseAmount * 1.5;
 
     const playerId = gameState["in_action"];
     const currentPlayer = gameState["players"][playerId];
     const currentHand = currentPlayer["hole_cards"];
+
+    const communityCards = gameState.community_cards;
 
     const highCards = ["A", "K", "Q", "J"];
 
@@ -26,13 +28,13 @@ class Player {
     let betAmount = 0;
 
     if(highCards.includes(currentHand[0].rank) || highCards.includes(currentHand[1].rank)){
-      currentRiskLevel = riskLevel.call;
+      currentRiskLevel = riskLevel.call;      
     }
     if(currentHand[0].rank === currentHand[1].rank){
-      currentRiskLevel = riskLevel.moreRisk;
+      currentRiskLevel = riskLevel.check; 
       
       if(highCards.includes(currentHand[0].rank)){
-        currentRiskLevel = riskLevel.allIn
+        currentRiskLevel = riskLevel.call;
       }
     }
     if((currentHand[0].rank === "A" && currentHand[1].rank === "K") || (currentHand[0].rank === "K" &&  currentHand[1].rank === "A")){
