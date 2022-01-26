@@ -5,8 +5,8 @@ class Player {
 
   static betRequest(gameState, bet) {
     const currentBuyIn = gameState["current_buy_in"];
-    const minimumRaise = gameState["minimum_raise"];
-    const moreRiskRaise = minimumRaise * 2;
+    const minimumRaiseAmount = gameState["minimum_raise"];
+    const moreRiskRaiseAmount = minimumRaiseAmount * 2;
 
     const playerId = gameState["in_action"];
     const currentPlayer = gameState["players"][playerId];
@@ -30,18 +30,10 @@ class Player {
     }
     if(currentHand[0].rank === currentHand[1].rank){
       currentRiskLevel = riskLevel.moreRisk;
-    }
-    if(currentHand[0].rank === "A" && currentHand[1].rank === "A"){
-      currentRiskLevel = riskLevel.allIn;
-    }
-    if(currentHand[0].rank === "K" && currentHand[1].rank === "K"){
-      currentRiskLevel = riskLevel.moreRisk;
-    }
-    if(currentHand[0].rank === "Q" && currentHand[1].rank === "Q"){
-      currentRiskLevel = riskLevel.moreRisk;
-    }
-    if(currentHand[0].rank === "J" && currentHand[1].rank === "J"){
-      currentRiskLevel = riskLevel.moreRisk;
+      
+      if(highCards.includes(currentHand[0].rank)){
+        currentRiskLevel = riskLevel.allIn
+      }
     }
     if((currentHand[0].rank === "A" && currentHand[1].rank === "K") || (currentHand[0].rank === "K" &&  currentHand[1].rank === "A")){
       currentRiskLevel = riskLevel.raise;
@@ -64,10 +56,10 @@ class Player {
         betAmount = currentBuyIn - currentPlayer["bet"];
         break;
       case riskLevel.raise:
-        betAmount = currentBuyIn - currentPlayer["bet"] + minimumRaise;
+        betAmount = currentBuyIn - currentPlayer["bet"] + minimumRaiseAmount;
         break;
       case riskLevel.moreRisk:
-        betAmount = currentBuyIn - currentPlayer["bet"] + moreRiskRaise;
+        betAmount = currentBuyIn - currentPlayer["bet"] + moreRiskRaiseAmount;
       break;
       case riskLevel.allIn:
         betAmount = currentPlayer["stack"];
