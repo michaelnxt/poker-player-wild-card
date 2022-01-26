@@ -40,6 +40,9 @@ class Player {
       currentBettingRound = 4;
     }
 
+    if(currentHand[0].rank === currentHand[1].rank && highCards.includes(currentHand[0].rank)){
+      currentRiskLevel = riskLevel.call;
+    }
 
     if(playersInGame <= 3){
       if(currentHand[0].rank === currentHand[1].rank){
@@ -66,6 +69,8 @@ class Player {
         currentRiskLevel = riskLevel.call;
       }
     }
+
+
 
     switch(currentRiskLevel){
       case riskLevel.check:
