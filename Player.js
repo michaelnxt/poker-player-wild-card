@@ -12,8 +12,6 @@ class Player {
     const currentPlayer = gameState["players"][playerId];
     const currentHand = currentPlayer["hole_cards"];
 
-    const highCards = ['A', 'K', 'Q', 'J'];
-
     let betAmount = 0;
 
     switch(currentHand){
@@ -36,16 +34,13 @@ class Player {
         betAmount = currentBuyIn - currentPlayer["bet"] + minimumRaise;
         break;
         case (currentHand[0]["rank"] === "A" && currentHand[1]["rank"] === "J") || (currentHand[0]["rank"] === "J" &&  currentHand[1]["rank"] === "A"):
-          betAmount = currentBuyIn - currentPlayer["bet"] + minimumRaise;
+        betAmount = currentBuyIn - currentPlayer["bet"] + minimumRaise;
         break;
       case (currentHand[0]["rank"] === "K" && currentHand[1]["rank"] === "Q") || (currentHand[0]["rank"] === "Q" &&  currentHand[1]["rank"] === "K"):
         betAmount = currentBuyIn - currentPlayer["bet"] + minimumRaise;
         break;
-      case currentHand[0]["rank"] === currentHand[1]["rank"]:
-        betAmount = currentBuyIn - currentPlayer["bet"] + minimumRaise;
-        break;
-      case highCards.includes(currentHand[0]["rank"]) || highCards.includes(currentHand[1]["rank"]):
-        betAmount = currentBuyIn - currentPlayer["bet"];
+        case currentHand[0]["rank"] === currentHand[1]["rank"]:
+        betAmount = currentBuyIn - currentPlayer["bet"] + moreRiskRaise;
         break;
     }
 
