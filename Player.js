@@ -6,7 +6,7 @@ class Player {
   static betRequest(gameState, bet) {
     const currentBuyIn = gameState["current_buy_in"];
     const minimumRaise = gameState["minimum_raise"];
-    const moreRiskRaise = minimumRaise * 2
+    const moreRiskRaise = minimumRaise * 2;
 
     const playerId = gameState["in_action"];
     const currentPlayer = gameState["players"][playerId];
