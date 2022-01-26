@@ -25,51 +25,51 @@ class Player {
 
     let betAmount = 0;
 
-    if(highCards.includes(currentHand[0]["rank"]) || highCards.includes(currentHand[1]["rank"])){
+    if(highCards.includes(currentHand[0].rank) || highCards.includes(currentHand[1].rank)){
       currentRiskLevel = riskLevel.call;
     }
-    if(currentHand[0]["rank"] === currentHand[1]["rank"]){
+    if(currentHand[0].rank === currentHand[1].rank){
       currentRiskLevel = riskLevel.moreRisk;
     }
-    if(currentHand[0]["rank"] === "A" && currentHand[1]["rank"] === "A"){
+    if(currentHand[0].rank === "A" && currentHand[1].rank === "A"){
       currentRiskLevel = riskLevel.allIn;
     }
-    if(currentHand[0]["rank"] === "K" && currentHand[1]["rank"] === "K"){
+    if(currentHand[0].rank === "K" && currentHand[1].rank === "K"){
       currentRiskLevel = riskLevel.moreRisk;
     }
-    if(currentHand[0]["rank"] === "Q" && currentHand[1]["rank"] === "Q"){
+    if(currentHand[0].rank === "Q" && currentHand[1].rank === "Q"){
       currentRiskLevel = riskLevel.moreRisk;
     }
-    if(currentHand[0]["rank"] === "J" && currentHand[1]["rank"] === "J"){
+    if(currentHand[0].rank === "J" && currentHand[1].rank === "J"){
       currentRiskLevel = riskLevel.moreRisk;
     }
-    if((currentHand[0]["rank"] === "A" && currentHand[1]["rank"] === "K") || (currentHand[0]["rank"] === "K" &&  currentHand[1]["rank"] === "A")){
+    if((currentHand[0].rank === "A" && currentHand[1].rank === "K") || (currentHand[0].rank === "K" &&  currentHand[1].rank === "A")){
       currentRiskLevel = riskLevel.minimumRaise;
     }
-    if((currentHand[0]["rank"] === "A" && currentHand[1]["rank"] === "Q") || (currentHand[0]["rank"] === "Q" &&  currentHand[1]["rank"] === "A")){
+    if((currentHand[0].rank === "A" && currentHand[1].rank === "Q") || (currentHand[0].rank === "Q" &&  currentHand[1].rank === "A")){
       currentRiskLevel = riskLevel.minimumRaise;
     }
-    if((currentHand[0]["rank"] === "A" && currentHand[1]["rank"] === "J") || (currentHand[0]["rank"] === "J" &&  currentHand[1]["rank"] === "A")){
+    if((currentHand[0].rank === "A" && currentHand[1].rank === "J") || (currentHand[0].rank === "J" &&  currentHand[1].rank === "A")){
       currentRiskLevel = riskLevel.minimumRaise;
     }
-    if((currentHand[0]["rank"] === "K" && currentHand[1]["rank"] === "Q") || (currentHand[0]["rank"] === "Q" &&  currentHand[1]["rank"] === "K")){
+    if((currentHand[0].rank === "K" && currentHand[1].rank === "Q") || (currentHand[0].rank === "Q" &&  currentHand[1].rank === "K")){
       currentRiskLevel = riskLevel.minimumRaise;
     }
 
     switch(currentRiskLevel){
-      case currentRiskLevel === riskLevel.check:
+      case riskLevel.check:
         betAmount = 0;
         break;
-      case currentRiskLevel === riskLevel.call:
+      case riskLevel.call:
         betAmount = currentBuyIn - currentPlayer["bet"];
         break;
-      case currentRiskLevel === riskLevel.raise:
+      case riskLevel.raise:
         betAmount = currentBuyIn - currentPlayer["bet"] + minimumRaise;
         break;
-      case currentRiskLevel === riskLevel.moreRisk:
+      case riskLevel.moreRisk:
         betAmount = currentBuyIn - currentPlayer["bet"] + moreRiskRaise;
       break;
-      case currentRiskLevel === riskLevel.allIn:
+      case riskLevel.allIn:
         betAmount = currentPlayer["stack"];
       break;
     }
