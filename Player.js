@@ -42,12 +42,12 @@ class Player {
       currentBettingRound = 4;
     }
 
-    /*if(currentHand[0].rank === currentHand[1].rank && highCards.includes(currentHand[0].rank)){
+    if(currentHand[0].rank === currentHand[1].rank && highCards.includes(currentHand[0].rank)){
       currentRiskLevel = riskLevel.call;
-    }*/
-    if(highCardsOnTable > 0){
-      currentRiskLevel = riskLevel.raise;
     }
+    /*if(highCardsOnTable > 0){
+      currentRiskLevel = riskLevel.raise;
+    }*/
 
     if(playersInGame <= 3 || (currentBuyIn - currentPlayer["bet"]) > 0){
       if(currentHand[0].rank === currentHand[1].rank){
