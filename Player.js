@@ -27,31 +27,48 @@ class Player {
 
     let betAmount = 0;
 
+    let currentRound = 1;
+
+    if(communityCards.length === 3){
+      currentRound = 2;
+    } else if(communityCards.length === 4){
+      currentRound = 3;
+    } else if(communityCards.length === 5){
+      currentRound = 4;
+    }
+
     if(highCards.includes(currentHand[0].rank) || highCards.includes(currentHand[1].rank)){
-      currentRiskLevel = riskLevel.call;      
+      currentRiskLevel = riskLevel.call;
     }
     if(currentHand[0].rank === currentHand[1].rank){
-      currentRiskLevel = riskLevel.check; 
+      currentRiskLevel = riskLevel.call; 
       
       if(highCards.includes(currentHand[0].rank)){
         currentRiskLevel = riskLevel.call;
+
+        if(currentRound === 3){
+          currentRiskLevel = riskLevel.allIn;
+        }
       }
     }
     if((currentHand[0].rank === "A" && currentHand[1].rank === "K") || (currentHand[0].rank === "K" &&  currentHand[1].rank === "A")){
-      currentRiskLevel = riskLevel.raise;
+      currentRiskLevel = riskLevel.call;
     }
     if((currentHand[0].rank === "A" && currentHand[1].rank === "Q") || (currentHand[0].rank === "Q" &&  currentHand[1].rank === "A")){
-      currentRiskLevel = riskLevel.raise;
+      currentRiskLevel = riskLevel.call;
     }
     if((currentHand[0].rank === "A" && currentHand[1].rank === "J") || (currentHand[0].rank === "J" &&  currentHand[1].rank === "A")){
-      currentRiskLevel = riskLevel.raise;
+      currentRiskLevel = riskLevel.call;
     }
     if((currentHand[0].rank === "K" && currentHand[1].rank === "Q") || (currentHand[0].rank === "Q" &&  currentHand[1].rank === "K")){
-      currentRiskLevel = riskLevel.raise;
+      currentRiskLevel = riskLevel.call;
     }
 
     switch(currentRiskLevel){
       case riskLevel.check:
+        if(currentBuyIn > currentPlayer["bet"]){
+
+        }
         betAmount = 0;
         break;
       case riskLevel.call:
