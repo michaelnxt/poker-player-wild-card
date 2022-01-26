@@ -3,6 +3,23 @@ class Player {
     return '0.1';
   }
 
+  static highCardsOnTable(highCards, currentHand, communityCards) {
+    let numberOfCardsOnTable = 0;
+
+    for(let i = 0; i < currentHand.length; i++){
+      const currentCard = currentHand[i];
+      let currentCardOnTable = 0;
+
+      for(let z = 0; z < communityCards.length; z++){
+        const currentCommunityCard = communityCards[z];
+        if(currentCard.stringify() === currentCommunityCard.stringify() && highCards.includes(currentCard.rank)){
+          currentCardOnTable++;
+        }
+      }
+      numberOfCardsOnTable = currentCardOnTable > numberOfCardsOnTable ? currentCardOnTable: numberOfCardsOnTable;
+    }
+  }
+
   static betRequest(gameState, bet) {
     const currentBuyIn = gameState["current_buy_in"];
     const minimumRaiseAmount = gameState["minimum_raise"];
@@ -18,6 +35,8 @@ class Player {
     const mediumCards = ["8", "9", "10"];
 
     const playersInGame = gameState["players"].length;
+
+    const highCardsOnTable = this.highCardsOnTable(highCards, currentHand, communityCards);
 
     const riskLevel = {
       check: 0,
@@ -43,8 +62,11 @@ class Player {
     if(currentHand[0].rank === currentHand[1].rank && highCards.includes(currentHand[0].rank)){
       currentRiskLevel = riskLevel.call;
     }
+    if(highCardsOnTable > 0){
+      currentRiskLevel = riskLevel.raise;
+    }
 
-    if(playersInGame <= 3 || (currentBuyIn - currentPlayer["bet"] > 0)){
+    if(playersInGame <= 3 || (currentBuyIn - currentPlayer["bet"]) > 0){
       if(currentHand[0].rank === currentHand[1].rank){
         currentRiskLevel = riskLevel.call; 
         
