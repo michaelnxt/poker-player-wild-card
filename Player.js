@@ -23,7 +23,7 @@ class Player {
     };
     let currentRiskLevel = riskLevel.call;
 
-    let betAmount = 0;
+    let betAmount = currentBuyIn - currentPlayer["bet"];
 
     if(highCards.includes(currentHand[0].rank) || highCards.includes(currentHand[1].rank)){
       currentRiskLevel = riskLevel.call;
