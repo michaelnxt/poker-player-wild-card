@@ -35,7 +35,13 @@ class Player {
     const highCards = ["A", "K", "Q", "J"];
     const mediumCards = ["8", "9", "10"];
 
-    const playersInGame = gameState["players"].length;
+    let playersInGame = 0;
+
+    for(let p = 0; p < gameState["players"].length; p++){
+      if(gameState["players"][0]["status"] === "active"){
+        playersInGame++;
+      }
+    }
 
     const highCardsOnTable = this.highCardsOnTable(highCards, currentHand, communityCards);
 
