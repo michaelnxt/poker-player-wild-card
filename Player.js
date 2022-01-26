@@ -25,6 +25,12 @@ class Player {
 
     let betAmount = 0;
 
+    if(highCards.includes(currentHand[0]["rank"]) || highCards.includes(currentHand[1]["rank"])){
+      currentRiskLevel = riskLevel.call;
+    }
+    if(currentHand[0]["rank"] === currentHand[1]["rank"]){
+      currentRiskLevel = riskLevel.moreRisk;
+    }
     if(currentHand[0]["rank"] === "A" && currentHand[1]["rank"] === "A"){
       currentRiskLevel = riskLevel.allIn;
     }
@@ -48,12 +54,6 @@ class Player {
     }
     if((currentHand[0]["rank"] === "K" && currentHand[1]["rank"] === "Q") || (currentHand[0]["rank"] === "Q" &&  currentHand[1]["rank"] === "K")){
       currentRiskLevel = riskLevel.minimumRaise;
-    }
-    if(currentHand[0]["rank"] === currentHand[1]["rank"]){
-      currentRiskLevel = riskLevel.moreRisk;
-    }
-    if(highCards.includes(currentHand[0]["rank"]) || highCards.includes(currentHand[1]["rank"])){
-      currentRiskLevel = riskLevel.call;
     }
 
     switch(currentRiskLevel){
