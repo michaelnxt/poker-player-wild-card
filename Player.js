@@ -3,6 +3,23 @@ class Player {
     return '0.1';
   }
 
+  static highCardsOnTable(highCards, currentHand, communityCards) {
+    let numberOfCardsOnTable = 0;
+
+    for(let i = 0; i < currentHand.length; i++){
+      const currentCard = currentHand[i];
+      let currentCardOnTable = 0;
+
+      for(let z = 0; z < communityCards.length; z++){
+        const currentCommunityCard = communityCards[z];
+        if(currentCard.stringify() === currentCommunityCard.stringify() && highCards.includes(currentCard.rank)){
+          currentCardOnTable++;
+        }
+      }
+      numberOfCardsOnTable = currentCardOnTable > numberOfCardsOnTable ? currentCardOnTable: numberOfCardsOnTable;
+    }
+  }
+
   static betRequest(gameState, bet) {
     const currentBuyIn = gameState["current_buy_in"];
     const minimumRaiseAmount = gameState["minimum_raise"];
@@ -97,23 +114,6 @@ class Player {
   }
 
   static showdown(gameState) {
-  }
-
-  static highCardsOnTable(highCards, currentHand, communityCards) {
-    let numberOfCardsOnTable = 0;
-
-    for(let i = 0; i < currentHand.length; i++){
-      const currentCard = currentHand[i];
-      let currentCardOnTable = 0;
-
-      for(let z = 0; z < communityCards.length; z++){
-        const currentCommunityCard = communityCards[z];
-        if(currentCard.stringify() === currentCommunityCard.stringify() && highCards.includes(currentCard.rank)){
-          currentCardOnTable++;
-        }
-      }
-      numberOfCardsOnTable = currentCardOnTable > numberOfCardsOnTable ? currentCardOnTable: numberOfCardsOnTable;
-    }
   }
 }
 
