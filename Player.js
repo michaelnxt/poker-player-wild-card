@@ -6,6 +6,7 @@ class Player {
   static betRequest(gameState, bet) {
     const currentBuyIn = gameState["current_buy_in"];
     const minimumRaise = gameState["minimum_raise"];
+    const moreRiskRaise = minimumRaise * 2
 
     const playerId = gameState["in_action"];
     const currentPlayer = gameState["players"][playerId];
@@ -15,16 +16,16 @@ class Player {
 
     switch(currentHand){
       case currentHand[0]["rank"] === "A" &&  currentHand[1]["rank"] === "A":
-        betAmount = currentBuyIn - currentPlayer["bet"] + minimumRaise;
+        betAmount = currentPlayer["stack"];
         break;
       case currentHand[0]["rank"] === "K" &&  currentHand[1]["rank"] === "K":
-        betAmount = currentBuyIn - currentPlayer["bet"] + minimumRaise;
+        betAmount = currentBuyIn - currentPlayer["bet"] + moreRiskRaise;
         break;
       case currentHand[0]["rank"] === "Q" &&  currentHand[1]["rank"] === "Q":
-        betAmount = currentBuyIn - currentPlayer["bet"] + minimumRaise;
+        betAmount = currentBuyIn - currentPlayer["bet"] + moreRiskRaise;
         break;
       case currentHand[0]["rank"] === "J" &&  currentHand[1]["rank"] === "J":
-        betAmount = currentBuyIn - currentPlayer["bet"] + minimumRaise;
+        betAmount = currentBuyIn - currentPlayer["bet"] + moreRiskRaise;
         break;
       case (currentHand[0]["rank"] === "A" && currentHand[1]["rank"] === "K") || (currentHand[0]["rank"] === "K" &&  currentHand[1]["rank"] === "A"):
         betAmount = currentBuyIn - currentPlayer["bet"] + minimumRaise;
@@ -39,7 +40,7 @@ class Player {
         betAmount = currentBuyIn - currentPlayer["bet"] + minimumRaise;
         break;
         case currentHand[0]["rank"] === currentHand[1]["rank"]:
-        betAmount = currentBuyIn - currentPlayer["bet"] + minimumRaise;
+        betAmount = currentBuyIn - currentPlayer["bet"] + moreRiskRaise;
         break;
     }
 
