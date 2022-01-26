@@ -15,6 +15,7 @@ class Player {
     const communityCards = gameState.community_cards;
 
     const highCards = ["A", "K", "Q", "J"];
+    const mediumCards = ["8", "9", "10"];
 
     const riskLevel = {
       check: 0,
@@ -37,9 +38,6 @@ class Player {
       currentRound = 4;
     }
 
-    if(highCards.includes(currentHand[0].rank) || highCards.includes(currentHand[1].rank)){
-      currentRiskLevel = riskLevel.call;
-    }
     if(currentHand[0].rank === currentHand[1].rank){
       currentRiskLevel = riskLevel.call; 
       
@@ -48,6 +46,12 @@ class Player {
 
         if(currentRound === 3){
           currentRiskLevel = riskLevel.allIn;
+        }
+      } else if(mediumCards.includes(currentHand[0].rank)){
+        currentRiskLevel = riskLevel.call;
+
+        if(currentRound === 3){
+          currentRiskLevel = riskLevel.raise;
         }
       }
     }
