@@ -66,28 +66,20 @@ class Player {
       currentBettingRound = 4;
     }
 
-
-
     if(playersInGame <= 3){
+      if(highCards.includes(currentHand[0].rank)){
+        currentRiskLevel = riskLevel.call;        
+      }
+
+      if(highCardsOnTable > 0){
+        currentRiskLevel = riskLevel.raise;
+      }
+
       if(currentHand[0].rank === currentHand[1].rank){
-        currentRiskLevel = riskLevel.call; 
-
-  
-
-        if(highCards.includes(currentHand[0].rank)){
-          currentRiskLevel = riskLevel.call;
-        }
+        currentRiskLevel = riskLevel.call;         
 
         if(highCardsOnTable > 0 ){
           currentRiskLevel = riskLevel.allIn;
-        }
-        
-        if(highCards.includes(currentHand[0].rank)){
-          currentRiskLevel = riskLevel.raise;
-
-          if(currentBettingRound === 3){
-            currentRiskLevel = riskLevel.allIn;
-          }
         }
       }
     }
