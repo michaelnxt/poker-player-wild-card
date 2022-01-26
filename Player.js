@@ -44,7 +44,7 @@ class Player {
       currentRiskLevel = riskLevel.call; 
       
       if(highCards.includes(currentHand[0].rank)){
-        currentRiskLevel = riskLevel.call;
+        currentRiskLevel = riskLevel.raise;
 
         if(currentRound === 3){
           currentRiskLevel = riskLevel.allIn;
