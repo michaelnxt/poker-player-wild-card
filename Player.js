@@ -12,7 +12,7 @@ class Player {
 
       for(let z = 0; z < communityCards.length; z++){
         const currentCommunityCard = communityCards[z];
-        if(currentCard.stringify() === currentCommunityCard.stringify() && highCards.includes(currentCard.rank)){
+        if(JSON.stringify(currentCard) === JSON.stringify(currentCommunityCard) && highCards.includes(currentCard.rank)){
           currentCardOnTable++;
         }
       }
