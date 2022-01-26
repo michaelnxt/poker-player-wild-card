@@ -12,6 +12,16 @@ class Player {
     const currentPlayer = gameState["players"][playerId];
     const currentHand = currentPlayer["hole_cards"];
 
+    const highCards = ["A", "K", "Q", "J"]
+
+    const riskLevel = {
+      check: 0,
+      call: 1,
+      raise: 2,
+      moreRisk: 3,
+      allIn: 10
+    };
+
     let betAmount = 0;
 
     switch(currentHand){
