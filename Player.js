@@ -35,11 +35,11 @@ class Player {
     const highCards = ["A", "K", "Q", "J"];
     const mediumCards = ["8", "9", "10"];
 
-    let playersInGame = 0;
+    let playersInGame = gameState.players.length;
 
     for(let p = 0; p < gameState["players"].length; p++){
-      if(gameState["players"][p]["status"] === "active"){
-        playersInGame++;
+      if(gameState["players"][p]["status"] === "out"){
+        playersInGame--;
       }
     }
 
