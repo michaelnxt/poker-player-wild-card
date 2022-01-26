@@ -44,16 +44,16 @@ class Player {
       currentRiskLevel = riskLevel.moreRisk;
     }
     if((currentHand[0].rank === "A" && currentHand[1].rank === "K") || (currentHand[0].rank === "K" &&  currentHand[1].rank === "A")){
-      currentRiskLevel = riskLevel.minimumRaise;
+      currentRiskLevel = riskLevel.raise;
     }
     if((currentHand[0].rank === "A" && currentHand[1].rank === "Q") || (currentHand[0].rank === "Q" &&  currentHand[1].rank === "A")){
-      currentRiskLevel = riskLevel.minimumRaise;
+      currentRiskLevel = riskLevel.raise;
     }
     if((currentHand[0].rank === "A" && currentHand[1].rank === "J") || (currentHand[0].rank === "J" &&  currentHand[1].rank === "A")){
-      currentRiskLevel = riskLevel.minimumRaise;
+      currentRiskLevel = riskLevel.raise;
     }
     if((currentHand[0].rank === "K" && currentHand[1].rank === "Q") || (currentHand[0].rank === "Q" &&  currentHand[1].rank === "K")){
-      currentRiskLevel = riskLevel.minimumRaise;
+      currentRiskLevel = riskLevel.raise;
     }
 
     switch(currentRiskLevel){
