@@ -19,7 +19,7 @@ class Player {
 
     const playersInGame = gameState["players"].length;
 
-    const highCardsOnTable = this.highCardsOnTable(highCards, currentHand, communityCards);
+    //const highCardsOnTable = this.highCardsOnTable(highCards, currentHand, communityCards);
 
     const riskLevel = {
       check: 0,
@@ -42,9 +42,9 @@ class Player {
       currentBettingRound = 4;
     }
 
-    if(currentHand[0].rank === currentHand[1].rank && highCards.includes(currentHand[0].rank)){
+    /*if(currentHand[0].rank === currentHand[1].rank && highCards.includes(currentHand[0].rank)){
       currentRiskLevel = riskLevel.call;
-    }
+    }*/
     if(highCardsOnTable > 0){
       currentRiskLevel = riskLevel.raise;
     }
