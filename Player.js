@@ -22,7 +22,6 @@ class Player {
       allIn: 10
     };
     let currentRiskLevel = riskLevel.check;
-    
 
     let betAmount = 0;
 
@@ -54,6 +53,9 @@ class Player {
         case currentHand[0]["rank"] === currentHand[1]["rank"]:
           currentRiskLevel = riskLevel.moreRisk;
         break;
+        case highCards.includes(currentHand[0]["rank"]) || highCards.includes(currentHand[1]["rank"]):
+          currentRiskLevel = riskLevel.call;
+          break;
     }
 
     switch(currentRiskLevel){
