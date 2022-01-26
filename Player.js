@@ -49,7 +49,7 @@ class Player {
       currentRiskLevel = riskLevel.raise;
     }
 
-    if(playersInGame <= 3){
+    if(playersInGame <= 3 || (currentBuyIn - currentPlayer["bet"]) > 0){
       if(currentHand[0].rank === currentHand[1].rank){
         currentRiskLevel = riskLevel.call; 
         
@@ -74,8 +74,6 @@ class Player {
         currentRiskLevel = riskLevel.call;
       }
     }
-
-
 
     switch(currentRiskLevel){
       case riskLevel.check:
@@ -104,7 +102,7 @@ class Player {
   static highCardsOnTable(highCards, currentHand, communityCards) {
     let numberOfCardsOnTable = 0;
 
-    currentHand.array.forEach(currentCard => {
+    currentHand.forEach(currentCard => {
       let currentCardOnTable = 0;
       communityCards.forEach(currentCommunityCard => {
         if(currentCard.stringify() === currentCommunityCard.stringify() && highCards.includes(currentCard.rank)){
