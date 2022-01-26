@@ -21,7 +21,7 @@ class Player {
       moreRisk: 3,
       allIn: 10
     };
-    let currentRiskLevel = riskLevel.call;
+    let currentRiskLevel = riskLevel.check;
 
     let betAmount = 0;
 
