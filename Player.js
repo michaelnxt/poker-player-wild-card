@@ -18,6 +18,7 @@ class Player {
       }
       numberOfCardsOnTable = currentCardOnTable > numberOfCardsOnTable ? currentCardOnTable: numberOfCardsOnTable;
     }
+    return numberOfCardsOnTable;
   }
 
   static betRequest(gameState, bet) {
