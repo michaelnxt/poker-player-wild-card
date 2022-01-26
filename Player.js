@@ -66,6 +66,29 @@ class Player {
       currentBettingRound = 4;
     }
 
+    if((currentHand[0].rank === "A" && currentHand[1].rank === "K") || (currentHand[0].rank === "K" &&  currentHand[1].rank === "A")){
+      currentRiskLevel = riskLevel.call;
+    }
+    if((currentHand[0].rank === "A" && currentHand[1].rank === "Q") || (currentHand[0].rank === "Q" &&  currentHand[1].rank === "A")){
+      currentRiskLevel = riskLevel.call;
+    }
+    if((currentHand[0].rank === "A" && currentHand[1].rank === "J") || (currentHand[0].rank === "J" &&  currentHand[1].rank === "A")){
+      currentRiskLevel = riskLevel.call;
+    }
+    if((currentHand[0].rank === "K" && currentHand[1].rank === "Q") || (currentHand[0].rank === "Q" &&  currentHand[1].rank === "K")){
+      currentRiskLevel = riskLevel.call;
+    }
+    if((currentHand[0].rank === "Q" && currentHand[1].rank === "J") || (currentHand[0].rank === "J" &&  currentHand[1].rank === "Q")){
+      currentRiskLevel = riskLevel.call;
+    }
+    if((currentHand[0].rank === "K" && currentHand[1].rank === "J") || (currentHand[0].rank === "J" &&  currentHand[1].rank === "K")){
+      currentRiskLevel = riskLevel.call;
+    }
+    if(currentHand[0].rank === currentHand[1].rank && (highCards.includes(currentHand[0].rank))){
+      currentRiskLevel = riskLevel.raise; 
+    }
+
+
     if(playersInGame <= 3){
       if(highCards.includes(currentHand[0].rank)){
         currentRiskLevel = riskLevel.call;        
@@ -76,7 +99,7 @@ class Player {
       }
 
       if(currentHand[0].rank === currentHand[1].rank){
-        currentRiskLevel = riskLevel.call;         
+               
 
         if(highCardsOnTable > 0 ){
           currentRiskLevel = riskLevel.allIn;
